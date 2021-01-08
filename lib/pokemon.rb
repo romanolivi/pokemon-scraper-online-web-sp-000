@@ -17,10 +17,10 @@ class Pokemon
     
   def self.find (id, db_connection)
     poke_id = db_connection.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
-    name = poke_id[1]
-    type = poke_id[2]
+    poke_name = poke_id[1]
+    poke_type = poke_id[2]
     
-    new_poke = Pokemon.new(id: id, name: name, type: type, db: db_connection)
+    new_poke = Pokemon.new(id: id, name: poke_name, type: poke_type, db: db_connection)
   end
   
   
