@@ -16,11 +16,12 @@ class Pokemon
   end
     
   def self.find (id, db_connection)
-    poke_id = db_connection.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
-    poke_name = poke_id[1]
-    poke_type = poke_id[2]
+    poke_id = db_connection.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten # flatten method was used because my result was coming out with two brackets like this: [["pokemon"]]
     
-    new_poke = Pokemon.new(id: id, name: poke_name, type: poke_type, db: db_connection)
+    poke_name = poke_id[1]   # assign name
+    poke_type = poke_id[2]   # assign type 
+    
+    new_poke = Pokemon.new(id: id, name: poke_name, type: poke_type, db: db_connection) # create new instance of pokemon
   end
   
   
